@@ -1,7 +1,7 @@
 <% if signed_in? %>
 
+<!--
   <div class="row">
-
     <aside class="span4">
       <section>
         <%= render 'shared/user_info' %>
@@ -17,9 +17,40 @@
 
   </div>  
 
+-->
 
 
-  
+<!--<% form_tag :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<-->
+ <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+
+<div>
+
+  <h3>Locations</h3>
+
+  <ol class="microposts">
+  <% if @spotList==!nil %>
+  <%  @spotList.each do |x| %>
+   <li> <%= @client.spot(x.reference).name %>  </br>     
+    <%= @client.spot(x.reference).formatted_address %>
+   </li>
+
+   <% end %>
+
+
+  </ol>
+
+</div>
+
+<% end %>
 
 <% else %>
   <div class="center hero-unit">

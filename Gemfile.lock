@@ -67,6 +67,7 @@ GEM
     ffi (1.1.5)
     google_places (0.1.1)
       httparty
+    hashie (1.2.0)
     hike (1.2.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
@@ -88,6 +89,10 @@ GEM
     multi_xml (0.5.1)
     nokogiri (1.5.5)
     pg (0.12.2)
+    places (0.0.1)
+      hashie
+      httparty
+      json
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -171,6 +176,7 @@ DEPENDENCIES
   google_places
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)
+  places
   rails (= 3.2.8)
   rspec-rails (= 2.10.0)
   sass-rails (= 3.2.4)
