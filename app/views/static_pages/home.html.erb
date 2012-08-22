@@ -37,7 +37,7 @@
   <h3>Locations</h3>
 
   <ol class="microposts">
-  <% if @spotList==!nil %>
+  <% if @spotList!=nil %>
   <%  @spotList.each do |x| %>
    <li> <%= @client.spot(x.reference).name %>  </br>     
     <%= @client.spot(x.reference).formatted_address %>
