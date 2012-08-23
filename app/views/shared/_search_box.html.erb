@@ -1,7 +1,12 @@
 <div>
 <%= form_tag :controller => 'static_pages', :action=>'search', :method => 'get' do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
+  	Keyword:
+    <%= text_field_tag :keyword, params[:keyword] %>
+  	Type:
+    <%= text_field_tag :type, params[:type] %>
+    Distance (km):
+    <%= text_field_tag :dist, params[:dist] %>
     <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>

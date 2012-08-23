@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
 
   def search
     @client = GooglePlaces::Client.new("AIzaSyD0-q-S5dQK7ph84LrAoR3oTaf6rxmDdaw")
-    @spotList = @client.spots(40.340395,-74.586894, :types => params[:search], :radius => "10000")
+    @spotList = @client.spots(40.340395,-74.586894, :name => params[:keyword], :types => params[:type], :radius => '1000')
   end
 
   def 
