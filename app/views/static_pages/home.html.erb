@@ -29,7 +29,6 @@
   <% if @spotList!=nil %>
   <%  @spotList.each do |x| %>
    <li> <%= @client.spot(x.reference).name %>  </br>     
-    <%= @client.spot(x.reference).formatted_address %>
    </li>
 
    <% end %>
