@@ -3,19 +3,23 @@
 <%= render 'shared/search_box' %>
 
 <div>
+<h3>Locations</h3>
+</br>
 
-  <h3>Locations</h3>
-
-  <ol class="microposts">
   <% if @spotList!=nil %>
   <%  @spotList.each do |x| %>
-   <li> <%= @client.spot(x.reference).name %>  </br>    
-   </li>
+  <div class="row">
+    <div class="span4">
+     <%= @client.spot(x.reference).name %> 
+    </div>
+    <div class="span6"><%= @client.spot(x.reference).formatted_address %></div> 
+    <div align="span2"> 
+      <%= link_to "Add time information!", "#", class: "btn" %>   
+    </div>
+  </br>
+  </div>
 
-   <% end %>
-
-
-  </ol>
+  <% end %>
 
 </div>
 
