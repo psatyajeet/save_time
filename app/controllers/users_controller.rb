@@ -11,13 +11,13 @@ class UsersController < ApplicationController
     @users=User.paginate(page: params[:page])
   end
     
-    def show
-        @user=User.find(params[:id])
-        @microposts = @user.microposts.paginate(page: params[:page])
-      end
+  def show
+    @user=User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
+  end
     
 
-    def destroy
+  def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_url

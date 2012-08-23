@@ -1,0 +1,9 @@
+<div>
+<%= form_tag :controller => 'static_pages', :action=>'search', :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+</div>
