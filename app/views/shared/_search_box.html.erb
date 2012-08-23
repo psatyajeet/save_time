@@ -7,7 +7,8 @@
     <%= text_field_tag :type, params[:type] %>
     Distance (km):
     <%= text_field_tag :dist, params[:dist] %>
-    <%= submit_tag "Search", :name => nil %>
+
+    <%= submit_tag "Search", :name => nil, class: "btn" %>
   </p>
 <% end %>
 
