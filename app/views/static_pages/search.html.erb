@@ -5,16 +5,18 @@
   <div>
   <h3>Locations</h3>
   <br>
-
+  <table class="table">
     <% if @spotList!=nil %>
       <%  @spotList.each do |x| %>
-      <div class="row">
-        <div class="span3">
+      <tr>
+        <td>
          <%= x.name %> 
-        </div>
+        </td>
+        <!--
         <div class="span4"><%= x.vicinity %></div>
         <% @location=Location.find_by_reference(x.id) %>
-        <div class="span2">
+        -->
+        <td>
           <% if @location!=nil %>
             <% if @location.waittimes.any? %>
               <% @waittimes=@location.waittimes.all %>
@@ -22,20 +24,21 @@
             <% end %>
           <% end %>
 
-        </div>
+        </td>
 
-        <div class="span3"> 
-          <%= link_to "Add time information!", "#", class: "btn" %>   
-        </div>
-      </div>
-      </br>
-      </br>
+        <td> 
+          <%= link_to "Add wait-time", "#", class: "btn" %>   
+        </td>
+      </tr>
+
+      <% end %>
     <% end %>
  
+</table>
 
-  </div>
+</div>
 
-<% end %>
+
 
 <% else %>
   <div class="center hero-unit">

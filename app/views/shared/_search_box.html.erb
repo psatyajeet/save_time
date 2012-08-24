@@ -2,13 +2,12 @@
 <%= form_tag :controller => 'static_pages', :action=>'search', :method => 'get' do %>
   <p>
   	Keyword:
-    <%= text_field_tag :keyword, params[:keyword] %>
+    <%= text_field_tag :keyword, params[:keyword], class: "input-medium search-query" %>
   	Type:
-    <%= text_field_tag :type, params[:type] %>
+    <%= select_tag :type, "<option>restaurant</option><option>doctor</option><option>airport</option><option>store</option>".html_safe, class: "input-medium search-query"%>
     Distance (km):
-    <%= text_field_tag :dist, params[:dist] %>
-
-    <%= submit_tag "Search", :name => nil, class: "btn" %>
+    <%= select_tag :dist, "<option>1</option><option>5</option><option>10</option><option>20</option><option>50</option><option>100</option>".html_safe, class: "input-medium search-query" %>
+    <%= submit_tag "Search", :name => nil, class: "input-medium btn btn-primary search-query"%>
   </p>
 <% end %>
 
