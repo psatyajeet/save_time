@@ -1,27 +1,39 @@
 <% if signed_in? %>
 
-<%= render 'shared/search_box' %>
+  <%= render 'shared/search_box' %>
 
-<div>
-<h3>Locations</h3>
-</br>
+  <div>
+  <h3>Locations</h3>
+  <br>
 
-  <% if @spotList!=nil %>
-  <%  @spotList.each do |x| %>
-  <div class="row">
-    <div class="span4">
-     <%= @client.spot(x.reference).name %> 
-    </div>
-    <div class="span6"><%= @client.spot(x.reference).formatted_address %></div> 
-    <div align="span2"> 
-      <%= link_to "Add time information!", "#", class: "btn" %>   
-    </div>
-  </br>
+    <% if @spotList!=nil %>
+      <%  @spotList.each do |x| %>
+      <div class="row">
+        <div class="span3">
+         <%= x.name %> 
+        </div>
+        <div class="span4"><%= @client.spot(x.reference).formatted_address %></div>
+        <% @location=Location.find_by_reference(x.id) %>
+        <div class="span2">
+          <% if @location!=nil %>
+            <% if @location.waittimes.any? %>
+              <% @waittimes=@location.waittimes.all %>
+              <%= render @waittimes %>
+            <% end %>
+          <% end %>
+
+        </div>
+
+        <div class="span3"> 
+          <%= link_to "Add time information!", "#", class: "btn" %>   
+        </div>
+      </div>
+      </br>
+      </br>
+    <% end %>
+ 
+
   </div>
-
-  <% end %>
-
-</div>
 
 <% end %>
 
@@ -38,3 +50,4 @@
 
   <%= link_to image_tag("princeton.png", :size => "60x50", alt: "Princeton Shield"), 'http://princeton.edu/' %>
 <% end %> 
+

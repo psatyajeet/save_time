@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823184211) do
+ActiveRecord::Schema.define(:version => 20120824015845) do
 
   create_table "locations", :force => true do |t|
     t.string   "reference"
@@ -41,5 +41,14 @@ ActiveRecord::Schema.define(:version => 20120823184211) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "waittimes", :force => true do |t|
+    t.string   "content"
+    t.integer  "location_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "waittimes", ["location_id", "created_at"], :name => "index_waittimes_on_location_id_and_created_at"
 
 end
