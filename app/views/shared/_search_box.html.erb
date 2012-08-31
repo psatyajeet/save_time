@@ -4,9 +4,11 @@
   	Keyword:
     <%= text_field_tag :keyword, params[:keyword], class: "input-medium search-query" %>
   	Type:
-    <%= select_tag :type, "<option>restaurant</option><option>doctor</option><option>airport</option><option>store</option>".html_safe, class: "input-medium search-query"%>
+    <%= select_tag(:type, options_for_select([['Restaurants', 'restaurant'], ['Doctor', 'doctor'], ['Store', 'store'],['Airport', 'airport']], :selected => params[:type]), class: "input-medium search-query")%>
+
     Distance (km):
-    <%= select_tag :dist, "<option>1</option><option>5</option><option>10</option><option>20</option><option>50</option><option>100</option>".html_safe, class: "input-medium search-query" %>
+    <%= select_tag(:dist, options_for_select([['1 mile', '1'], ['5 miles', '5'], ['10 miles', '10'],['20 miles', '20'], ['50 miles', '50'], ['100 miles', '100']], :selected => params[:dist]), class: "input-medium search-query")%>
+
     <%= submit_tag "Search", :name => nil, class: "input-medium btn btn-primary search-query"%>
   </p>
 <% end %>

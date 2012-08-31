@@ -5,33 +5,56 @@
   <div>
   <h3>Locations</h3>
   <br>
-  <table class="table">
-    <% if @spotList!=nil %>
-      <%  @spotList.each do |x| %>
+  <table class="table table-striped ">
+    <% if $spotList!=nil %>
+      <%  $spotList.each do |x| %>
       <tr>
         <td>
          <%= x.name %> 
         </td>
-        <!--
-        <div class="span4"><%= x.vicinity %></div>
+        <!--<div class="span4"><%= x.vicinity %></div>-->
         <% @location=Location.find_by_reference(x.id) %>
-        -->
-        <td>
+        
           <% if @location!=nil %>
             <% if @location.waittimes.any? %>
               <% @waittimes=@location.waittimes.all %>
-              <%= render @waittimes %>
-            <% end %>
+              <td>
+                <%= render @waittimes %>
+              </td>
+              <td>Updated <%= time_ago_in_words(@waittimes.first.created_at) %> ago. </td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>      
           <% end %>
 
-        </td>
-
         <td> 
-          <%= link_to "Add wait-time", "#", class: "btn" %>   
+          <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              Add wait-time
+              <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+              <li><%= link_to "5 minutes", {:controller => "waittimes", :action => "create", :id => @location, :id2 => "5"}%></li>
+              <li><%= link_to "10 minutes", {:controller => "waittimes", :action => "create", :id => @location, :id2 => "10"}%></li>
+              <li><%= link_to "15 minutes", {:controller => "waittimes", :action => "create", :id => @location, :id2 => "15"}%></li>
+              <li><%= link_to "30 minutes", {:controller => "waittimes", :action => "create", :id => @location, :id2 => "30"}%></li>
+              <li><%= link_to "45 minutes", {:controller => "waittimes", :action => "create", :id => @location, :id2 => "45"}%></li>
+              <li><%= link_to "60 minutes", {:controller => "waittimes", :action => "create", :id => @location, :id2 => "60"}%></li>
+              <!--<li class="divider"></li>
+              <li><a tabindex="-1" href="#">Enter value</a></li>-->
+            </ul>
+          </div>
+          
         </td>
       </tr>
 
       <% end %>
+
+    <% else %>
+
+    WHY ISN"T THIS WORKING??
     <% end %>
  
 </table>
