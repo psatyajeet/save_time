@@ -11,8 +11,9 @@ class StaticPagesController < ApplicationController
 
   def search
 
+    @coordinate=Geocoder.coordinates(params[:address])
     @client = GooglePlaces::Client.new("AIzaSyD0-q-S5dQK7ph84LrAoR3oTaf6rxmDdaw")
-    $spotList = @client.spots(40.340395,-74.586894, :keyword => params[:keyword], :types => params[:type], :radius => params[:dist].to_i*1000)
+    $spotList = @client.spots(@coordinate.first,@coordinate.second, :keyword => params[:keyword], :types => params[:type], :radius => params[:dist].to_i*1000)
     if $spotList!=nil
         $spotList.each do |x|
           @location=Location.create(name: x.name , reference: x.id)
@@ -23,8 +24,6 @@ class StaticPagesController < ApplicationController
 
 
   end
-
-  def 
 
   def help
   end

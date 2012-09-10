@@ -1,6 +1,9 @@
 <div>
+
 <%= form_tag :controller => 'static_pages', :action=>'search', :method => 'get' do %>
   <p>
+  	Location:
+	<%= text_field_tag :address, params[:address],class: "input-medium search-query" %>
   	Keyword:
     <%= text_field_tag :keyword, params[:keyword], class: "input-medium search-query" %>
   	Type:
