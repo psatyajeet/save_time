@@ -12,7 +12,7 @@
         <td>
          <%= x.name %> 
         </td>
-        <!--<div class="span4"><%= x.vicinity %></div>-->
+        <td><%= number_with_precision(Geocoder::Calculations.distance_between([x.lat,x.lng], [@coordinate.first,@coordinate.second]), :precision => 2) %> miles</td>
         <% @location=Location.find_by_reference(x.id) %>
         
           <% if @location!=nil %>
@@ -52,9 +52,6 @@
 
       <% end %>
 
-    <% else %>
-
-    WHY ISN"T THIS WORKING??
     <% end %>
  
 </table>
