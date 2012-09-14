@@ -3,14 +3,14 @@
 <%= form_tag :controller => 'static_pages', :action=>'search', :method => 'get' do %>
   <p>
   	Location:
-	<%= text_field_tag :address, params[:address],class: "input-medium search-query" %>
+	  <%= text_field_tag :address,  params[:address],class: "input-large search-query",:placeholder=> 'Use Current Location' %>
   	Keyword:
     <%= text_field_tag :keyword, params[:keyword], class: "input-medium search-query" %>
   	Type:
     <%= select_tag(:type, options_for_select([['Restaurants', 'restaurant'], ['Doctor', 'doctor'], ['Store', 'store'],['Airport', 'airport']], :selected => params[:type]), class: "input-medium search-query")%>
 
     Distance (km):
-    <%= select_tag(:dist, options_for_select([['1 mile', '1'], ['5 miles', '5'], ['10 miles', '10'],['20 miles', '20'], ['50 miles', '50'], ['100 miles', '100']], :selected => params[:dist]), class: "input-medium search-query")%>
+    <%= select_tag(:dist, options_for_select([['1 mile', '1'], ['5 miles', '5'], ['10 miles', '10'],['20 miles', '20'], ['50 miles', '50'], ['100 miles', '100']], :selected => params[:dist]), class: "input-small search-query")%>
 
     <%= submit_tag "Search", :name => nil, class: "input-medium btn btn-primary search-query"%>
   </p>

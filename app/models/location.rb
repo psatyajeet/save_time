@@ -10,9 +10,13 @@
 #
 
 class Location < ActiveRecord::Base
-  attr_accessible :name, :reference
+  attr_accessible :name, :reference, :latitude, :longitude
   has_many :waittimes, dependent: :destroy
 
   validates :reference, presence: true,
   uniqueness: true
+
+
+
+
 end
