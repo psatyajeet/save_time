@@ -6,4 +6,6 @@ class Waittime < ActiveRecord::Base
   validates :location_id, presence: true
 
   default_scope order: 'waittimes.created_at DESC'
+
+
 end

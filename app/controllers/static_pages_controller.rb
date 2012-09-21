@@ -30,10 +30,8 @@ class StaticPagesController < ApplicationController
           end 
       end 
     
-
     # be careful, I used a global variable for spotList which may be bad. 
-
-
+    
   end
 
   def help

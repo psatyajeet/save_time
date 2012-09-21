@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120914151133) do
+ActiveRecord::Schema.define(:version => 20120915192013) do
 
   create_table "locations", :force => true do |t|
     t.string   "reference"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120914151133) do
     t.integer  "location_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
   end
 
   add_index "waittimes", ["location_id", "created_at"], :name => "index_waittimes_on_location_id_and_created_at"

@@ -16,7 +16,22 @@ class Location < ActiveRecord::Base
   validates :reference, presence: true,
   uniqueness: true
 
-
+  def average
+     @count=0
+     @sum=0
+     @waittimes=waittimes.all
+       @waittimes.each do |x| 
+        if x.updated_at> Time.now-1.hour
+          @sum+=x.content.to_f
+          @count+=1
+        end
+      end
+    if @count!=0
+     return @sum/@count
+   end
+ else
+  return -1
+  end
 
 
 end

@@ -20,10 +20,17 @@
           <% if @location!=nil %>
             <% if @location.waittimes.any? %>
               <% @waittimes=@location.waittimes.all %>
+              <% @avg=@location.average %>
+
               <td>
-                <%= render @waittimes %>
+                <% if @avg!=-1 %>
+                ~ <%= @avg.floor %> minutes
+                <% else %> 
+                <!--<%= render @waittimes.first %>--> Data not up-to-date
+                <% end %>
+                
               </td>
-              <td>Updated <%= time_ago_in_words(@waittimes.first.created_at) %> ago. </td>
+              <td>Updated <%= time_ago_in_words(@waittimes.first.created_at) %> ago.  </td>
             <% else %>
               <td></td>
               <td></td>
@@ -53,6 +60,10 @@
       </tr>
 
       <% end %>
+
+      <% else %>
+
+      There are no locations in your specified distance
 
     <% end %>
  
