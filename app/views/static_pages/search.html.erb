@@ -3,10 +3,16 @@
   <%= render 'shared/search_box' %>
 
   <div>
+    <!--
     <%= $lat %>
     <%= $long %>
+    -->
   <h3>Locations</h3>
+  
   <br>
+    <% if $spotList.empty? %>
+      There are no locations in your area. Please try again with a larger radius.
+  <% end %>
   <table class="table table-striped ">
     <% if $spotList!=nil %>
       <%  $spotList.each do |x| %>
@@ -61,9 +67,7 @@
 
       <% end %>
 
-      <% else %>
 
-      There are no locations in your specified distance
 
     <% end %>
  
