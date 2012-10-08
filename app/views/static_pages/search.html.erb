@@ -13,25 +13,71 @@
     <% if $spotList.empty? %>
       There are no locations in your area. Please try again with a larger radius.
   <% end %>
-  <table class="table table-striped ">
+
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Distance
+      </th>
+      <th>
+        Avg Waittime
+      </th>
+      <th>
+        Last Update
+      </th>
+      <th>
+        Add Waittime
+      </th>
+    </tr>
+  </thead>
+  <tbody>
     <% if $spotList!=nil %>
       <%  $spotList.each do |x| %>
-      <tr>
+      
+      <% @location=Location.find_by_reference(x.id) %>
+
+       <% if @location!=nil %>
+            <% if @location.waittimes.any? %>
+              <% @waittimes=@location.waittimes.all %>
+              <% @avg=@location.average %>
+                <% if @avg!=-1 %>
+                 <% if @avg>@waittimes.first.content.to_f %>
+                  <tr bgcolor=#dff0d8>
+                 <% elsif @avg<@waittimes.first.content.to_f %>
+                 <tr bgcolor=#F2DEDE>
+                 <% else %>
+                 <tr bgcolor=#FCF8E3>
+                 <% end %>
+               <% else %>
+                 <tr>
+               <% end %>
+               <% else %>
+               <tr>
+            <% end %>
+       <% end %> 
+
         <td>
          <%= x.name %> 
         </td>
         <td><%= number_with_precision(Geocoder::Calculations.distance_between([x.lat,x.lng], [$lat,$long]), :precision => 2) %> miles</td>
-        <% @location=Location.find_by_reference(x.id) %>
+        
         
           <% if @location!=nil %>
             <% if @location.waittimes.any? %>
-              <% @waittimes=@location.waittimes.all %>
-              <% @avg=@location.average %>
-
-              <td>
+              
                 <% if @avg!=-1 %>
+                <% if @avg>@waittimes.first.content.to_f %>
+       
+                <% end %>
+                <td>
                 ~ <%= @avg.floor %> minutes
                 <% else %> 
+                <td>
                 <!--<%= render @waittimes.first %>--> Data not up-to-date
                 <% end %>
                 
@@ -70,6 +116,7 @@
 
 
     <% end %>
+  </tbody>
  
 </table>
 
